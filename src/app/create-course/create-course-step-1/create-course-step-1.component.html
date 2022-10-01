@@ -1,5 +1,5 @@
 <div [formGroup]="form" class="course-details-form">
-    <mat-form-field floatLabel="auto">
+    <mat-form-field>
         <input matInput placeholder="Course title" formControlName="title" #title>
         <mat-hint align="end">
             {{title.value.length}} / 60
@@ -7,23 +7,26 @@
         <mat-error *ngIf="courseTitle.errors?.minlength">
             A minimum length of 5 characters is required
         </mat-error>
+        <mat-error *ngIf="courseTitle.errors?.maxlength">
+            A maximum length of 60 characters is allowed
+        </mat-error>
     </mat-form-field>
 
     <mat-radio-group class="course-type" formControlName="courseType">
-        <mat-radio-button [disabled]="true" value="free">Free</mat-radio-button>
+        <mat-radio-button [disabled]="false" value="free">Free</mat-radio-button>
         <mat-radio-button value="premium">Premium</mat-radio-button>
     </mat-radio-group>
 
     <mat-form-field appearance="fill">
-        <mat-select formControlName="category" multiple placeholder="Select category">
+        <mat-select formControlName="category"
+                    placeholder="Select category"
+                    >
             <mat-option>None</mat-option>
             <mat-optgroup label="Beginners">
                 <mat-option value="newprogramming">New To programming</mat-option>
                 <mat-option value="newjavascript">New To Javascript</mat-option>
                 <mat-option value="newangular">New To Angular</mat-option>
-
             </mat-optgroup>
-            <mat-option value="beginners">Beginners</mat-option>
             <mat-option value="intermediate">Intermediate</mat-option>
             <mat-option value="advanced">Advanced</mat-option>
         </mat-select>
@@ -31,7 +34,8 @@
 
     <mat-form-field appearance="outline">
         <input matInput formControlName="releasedAt"
-                placeholder="Release date" [matDatepicker]="releasedAtPicker">
+                placeholder="Release date"
+                [matDatepicker]="releasedAtPicker">
         <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
 
         </mat-datepicker-toggle>
@@ -46,9 +50,12 @@
     </mat-checkbox>
 
     <mat-form-field  appearance="outline">
-        <textarea matInput placeholder="Description" formControlName="longDescription"
-            cdkTextareaAutosize [cdkAutosizeMinRows]="2"
-            [cdkAutosizeMaxRows]="6">
+        <textarea
+            matInput placeholder="Description"
+            formControlName="longDescription"
+            cdkTextareaAutosize
+            [cdkAutosizeMinRows]="2"
+            [cdkAutosizeMaxRows]="5">
         </textarea>
     </mat-form-field>
 
