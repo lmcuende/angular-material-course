@@ -1,3 +1,6 @@
+@import "../../mixins";
+
+@include drag-drop();
 
 .drag-drop-container {
   font-family: "Roboto";
@@ -8,11 +11,11 @@
 .lessons-list {
   width: 500px;
   max-width: 100%;
-  border: solid 1px #ccc;
+  border: solid 1.5px #ccc;
   min-height: 60px;
   display: block;
   background: white;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
